@@ -1,7 +1,8 @@
 <?php
-include '../model/xl_product.php';
 session_start();
-$sanpham = getSanPham();
+include '../model/xl_user.php';
+
+$allUsers = getAllUsers();
 ?>
 
 <!DOCTYPE html>
@@ -62,58 +63,43 @@ $sanpham = getSanPham();
         </ul>
       </nav>
       <div class="main-content">
-        <h3 class="title-page">Sản phẩm</h3>
+        <h3 class="title-page">Thành viên</h3>
         <div class="d-flex justify-content-end">
-          <a href="addProduct.php" class="btn btn-primary mb-2">Thêm sản phẩm</a>
+          <a href="" class="btn btn-primary mb-2">Thêm thành viên</a>
         </div>
         <table id="example" class="table table-striped" style="width: 100%">
           <thead>
             <tr>
-              <th>Tên sản phẩm</th>
-              <th>Giá tiền</th>
-              <th>Ngày nhập</th>
-              <th>Lượt xem</th>
-              <th>Trạng thái</th>
+              <th>Mã tài khoản</th>
+              <th>Tên user</th>
+              <th>Email</th>
+              <th>Địa chỉ</th>
+              <th>Quyền</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            foreach ($sanpham as $s) {
-              if ($s['so_luong'] > 0) {
-                $trangthai = 'Còn hàng';
+            foreach ($allUsers as $user) {
+              if ($user['quyen'] == 1) {
+                $tenquyen = 'User';
               } else {
-                $trangthai = 'Hết hàng';
+                $tenquyen = 'Admin';
               }
 
-              if (isset($s['trang_thai'])) {
-                if ($s['trang_thai'] == 1) {
-                  $mode = 0;
-                } else {
-                  $mode = 1;
-                }
-              }
-
-              if (isset($s['trang_thai'])) {
-                if ($s['trang_thai'] == 1) {
-                  $trangthaihientai = "Ẩn";
-                } else {
-                  $trangthaihientai = "Hiện";
-                }
-              }
               echo '
-              <tr>
-                <td>' . $s['Ten_sp'] . '</td>
-                <td>' . $s['Gia'] . '</td>
-                <td>' . $s['Ngay_nhap'] . '</td>
-                <td>' . $s['Luot_xem'] . '</td>
-                <td>' . $trangthai . '</td>
-                <td>
-                  <a href="editProduct.php?ma_sp=' . $s['Ma_sp'] . '" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>'
-                . '
-                  <a href="index.php?pg=setStatus&id=' . $s['Ma_sp'] . '&trang_thai=' . $mode . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i>' . $trangthaihientai . '</a>'
-                . '
-                </td>
-              </tr>';
+                  <tr>
+                    <td>' . $user['ma_tk'] . '</td>
+                    <td>' . $user['ten_tk'] . '</td>
+                    <td>' . $user['email'] . '</td>
+                    <td>' . $user['dia_chi'] . '</td>
+                    <td>' . $tenquyen . '</td>
+                    <td>
+                      <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                      <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Ẩn</a>
+                      <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hiện</a>
+                    </td>
+                  </tr>
+                ';
             }
             ?>
           </tbody>
@@ -123,9 +109,8 @@ $sanpham = getSanPham();
       </div>
     </div>
   </div>
-  <script src="assets/js/main.js"></script>
   <script>
-    // new DataTable("#example");
+    // new DataTable('#example');
   </script>
 </body>
 

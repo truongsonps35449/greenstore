@@ -1,6 +1,4 @@
 <?php
-// include 'm_pdo.php';
-
 function getDanhMuc()
 {
     $query = "SELECT * FROM `danh_muc`";

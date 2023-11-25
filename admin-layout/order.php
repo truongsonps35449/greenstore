@@ -1,7 +1,5 @@
 <?php
-include '../model/xl_product.php';
 session_start();
-$sanpham = getSanPham();
 ?>
 
 <!DOCTYPE html>
@@ -62,70 +60,78 @@ $sanpham = getSanPham();
         </ul>
       </nav>
       <div class="main-content">
-        <h3 class="title-page">Sản phẩm</h3>
+        <h3 class="title-page">Quản lí đơn hàng</h3>
         <div class="d-flex justify-content-end">
-          <a href="addProduct.php" class="btn btn-primary mb-2">Thêm sản phẩm</a>
+          <a href="addProduct.php" class="btn btn-primary mb-2">Thêm đơn hàng</a>
         </div>
         <table id="example" class="table table-striped" style="width: 100%">
           <thead>
             <tr>
+              <th>Tên khách hàng</th>
               <th>Tên sản phẩm</th>
-              <th>Giá tiền</th>
-              <th>Ngày nhập</th>
-              <th>Lượt xem</th>
+              <th>Ngày lập đơn</th>
               <th>Trạng thái</th>
+              <th>Tổng tiền</th>
             </tr>
           </thead>
           <tbody>
-            <?php
-            foreach ($sanpham as $s) {
-              if ($s['so_luong'] > 0) {
-                $trangthai = 'Còn hàng';
-              } else {
-                $trangthai = 'Hết hàng';
-              }
-
-              if (isset($s['trang_thai'])) {
-                if ($s['trang_thai'] == 1) {
-                  $mode = 0;
-                } else {
-                  $mode = 1;
-                }
-              }
-
-              if (isset($s['trang_thai'])) {
-                if ($s['trang_thai'] == 1) {
-                  $trangthaihientai = "Ẩn";
-                } else {
-                  $trangthaihientai = "Hiện";
-                }
-              }
-              echo '
-              <tr>
-                <td>' . $s['Ten_sp'] . '</td>
-                <td>' . $s['Gia'] . '</td>
-                <td>' . $s['Ngay_nhap'] . '</td>
-                <td>' . $s['Luot_xem'] . '</td>
-                <td>' . $trangthai . '</td>
-                <td>
-                  <a href="editProduct.php?ma_sp=' . $s['Ma_sp'] . '" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>'
-                . '
-                  <a href="index.php?pg=setStatus&id=' . $s['Ma_sp'] . '&trang_thai=' . $mode . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i>' . $trangthaihientai . '</a>'
-                . '
-                </td>
-              </tr>';
-            }
-            ?>
+            <tr>
+              <td>Bùi Nguyễn Trường Sơn</td>
+              <td>Cây cảnh 1</td>
+              <td>22-11-2023</td>
+              <td>Đang giao hàng</td>
+              <td>200.000đ</td>
+              <td>
+                <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Ẩn</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hiện</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Bùi Nguyễn Trường Sơn</td>
+              <td>Cây cảnh 2</td>
+              <td>22-11-2023</td>
+              <td>Đang giao hàng</td>
+              <td>200.000đ</td>
+              <td>
+                <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Ẩn</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hiện</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Bùi Nguyễn Trường Sơn</td>
+              <td>Cây cảnh 3</td>
+              <td>22-11-2023</td>
+              <td>Đang giao hàng</td>
+              <td>200.000đ</td>
+              <td>
+                <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Ẩn</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hiện</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Bùi Nguyễn Trường Sơn</td>
+              <td>Cây cảnh 4</td>
+              <td>22-11-2023</td>
+              <td>Đang giao hàng</td>
+              <td>200.000đ</td>
+              <td>
+                <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Ẩn</a>
+                <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hiện</a>
+              </td>
+            </tr>
           </tbody>
-          <tfoot>
-          </tfoot>
+          <tfoot></tfoot>
         </table>
       </div>
     </div>
   </div>
   <script src="assets/js/main.js"></script>
   <script>
-    // new DataTable("#example");
+    //   new DataTable("#example");
   </script>
 </body>
 

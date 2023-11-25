@@ -2,6 +2,8 @@
 include '../controller/product.php';
 include '../model/xl_category.php';
 
+session_start();
+
 $danhmuc = getDanhMuc();
 $query = explode('=', $_SERVER["QUERY_STRING"]);
 $sanpham = getProductById($query[1]);
@@ -35,22 +37,32 @@ $sanpham = getProductById($query[1]);
                     <li>
                         <img src="../upload/img/logo.png" alt="" width="100px" />
                     </li>
-                    <li>
-                        <a href="index.html"><i class="fa-solid fa-house ico-side"></i>Dashboards</a>
+                    <li class="d-flex align-items-center">
+                        <img src="assets/img/user.jpg" alt="Avatar" width="30" class="rounded-circle">
+                        <?php
+                        if (isset($_SESSION['ten_tk'])) {
+                            echo '<div class="ms-3 text-white"> Hi, ' . $_SESSION['ten_tk'] . '</div>';
+                        } else {
+                            echo '<div class="ms-3">Hi anonymous</div>';
+                        }
+                        ?>
                     </li>
                     <li>
-                        <a href="order.html"><i class="fa-solid fa-cart-shopping ico-side"></i>Quản kí đơn
+                        <a href="dashboard.php"><i class="fa-solid fa-house ico-side"></i>Dashboards</a>
+                    </li>
+                    <li>
+                        <a href="order.php"><i class="fa-solid fa-cart-shopping ico-side"></i>Quản kí đơn
                             hàng</a>
                     </li>
                     <li>
-                        <a href="caterogies.html"><i class="fa-solid fa-folder-open ico-side"></i>Quản lí danh
+                        <a href="caterogies.php"><i class="fa-solid fa-folder-open ico-side"></i>Quản lí danh
                             muc</a>
                     </li>
                     <li>
                         <a href="products.php"><i class="fa-solid fa-mug-hot ico-side"></i>Quản lí sản phẩm</a>
                     </li>
                     <li>
-                        <a href="user.html"><i class="fa-solid fa-user ico-side"></i>Quản lí thành viên</a>
+                        <a href="user.php"><i class="fa-solid fa-user ico-side"></i>Quản lí thành viên</a>
                     </li>
                 </ul>
             </nav>

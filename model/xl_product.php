@@ -57,9 +57,44 @@ function getSanPham()
     $conn->close();
 }
 
+function getSanPhamNoiBat()
+{
+    $query = "SELECT * FROM `san_pham` WHERE `trang_thai` = 1 ORDER BY `Luot_xem` DESC LIMIT 4";
+    $conn = get_connection();
+    if ($conn) {
+        $result = mysqli_query($conn, $query);
+        $json_data = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($json_data, $row);
+        }
+        return $json_data;
+    }
+
+    $conn->close();
+}
+
+function getSanPhamMoiNhat()
+{
+    $query = "SELECT * FROM `san_pham` WHERE `trang_thai` = 1 ORDER BY `Ngay_nhap` DESC LIMIT 4";
+    $conn = get_connection();
+    if ($conn) {
+        $result = mysqli_query($conn, $query);
+        $json_data = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($json_data, $row);
+        }
+        return $json_data;
+    }
+
+    $conn->close();
+}
+
 function getProductById($id)
 {
-    $query = "SELECT * FROM `san_pham` WHERE `Ma_sp` = " . $id;
+    $query = "SELECT * 
+    FROM `san_pham` AS A JOIN `danh_muc` AS B
+    ON A.ma_dm = B.ma_dm
+    WHERE A.Ma_sp = " . $id;
     $conn = get_connection();
     if ($conn) {
         $result = mysqli_query($conn, $query);
