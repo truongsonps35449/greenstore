@@ -58,14 +58,14 @@ $sanpham = getProductById($query[1]);
                 <h3 class="title-page">Sửa sản phẩm</h3>
 
                 <form class="addPro" action="index.php?pg=editProduct" method="POST" enctype="multipart/form-data">
-                    <div class="form-group"></div>
+                    <input type="text" hidden value="<?php echo $sanpham[0]['Ma_sp'] ?>" name="productId" id="productId" />
                     <div class="form-group">
                         <label for="name">Tên sản phẩm:</label>
-                        <input type="text" class="form-control" value="<?php echo $sanpham[0]['Ten_sp'] ?>" name="name" id="name" placeholder="Nhập tên sả phẩm" />
+                        <input type="text" class="form-control border border-primary" value="<?php echo $sanpham[0]['Ten_sp'] ?>" name="name" id="name" placeholder="Nhập tên sả phẩm" />
                     </div>
                     <div class="form-group">
                         <label for="categories">Danh mục:</label>
-                        <select class="form-select" name="category" aria-label="Default select example">
+                        <select class="form-select border border-primary" name="category" aria-label="Default select example">
                             <option>Chọn danh mục</option>
                             <?php
                             foreach ($danhmuc as $v) {
@@ -80,7 +80,7 @@ $sanpham = getProductById($query[1]);
                     </div>
                     <div class="form-group">
                         <label for="price">Giá gốc:</label>
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 border border-primary rounded">
                             <div class="input-group-append">
                                 <span class="input-group-text">$</span>
                             </div>
@@ -89,7 +89,7 @@ $sanpham = getProductById($query[1]);
                     </div>
                     <div class="form-group">
                         <label for="price_sale">Giá khuyến mãi:</label>
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 border border-primary rounded">
                             <div class="input-group-append">
                                 <span class="input-group-text">$</span>
                             </div>
@@ -98,24 +98,34 @@ $sanpham = getProductById($query[1]);
                     </div>
                     <div class="form-group">
                         <label>Số lượng</label>
-                        <input class="form-control" value="<?php echo $sanpham[0]['so_luong'] ?>" type="text" name="quantity" rows="3" placeholder="Nhập số lượng" />
+                        <input class="form-control border border-primary" value="<?php echo $sanpham[0]['so_luong'] ?>" type="text" name="quantity" rows="3" placeholder="Nhập số lượng" />
                     </div>
                     <div class="form-group">
                         <label>Mô tả ngắn</label>
-                        <textarea class="form-control" name="description" rows="3" placeholder="Nhập 1 đoạn mô tả ngắn về sản phẩm" style="height: 78px"><?php echo $sanpham[0]['Mo_ta_ngan'] ?></textarea>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" name="image" value="<?php echo $sanpham[0]['Hinh_sp'] ?>" class="custom-file-input" id="exampleInputFile" />
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" name="smallImage1" value="<?php echo $sanpham[0]['Hinh_sp_nho_1'] ?>" class="custom-file-input" id="exampleInputFile2" />
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" name="smallImage2" value="<?php echo $sanpham[0]['Hinh_sp_nho_2'] ?>" class="custom-file-input" id="exampleInputFile3" />
+                        <textarea class="form-control border border-primary" name="description" rows="3" placeholder="Nhập 1 đoạn mô tả ngắn về sản phẩm" style="height: 78px"><?php echo $sanpham[0]['Mo_ta_ngan'] ?></textarea>
                     </div>
                     <div class="form-group">
+                        <div>Ảnh cũ</div>
+                        <img class="me-2" src="<?php echo '/greenstore/upload/img/' . $sanpham[0]['Hinh_sp']; ?>" alt="img" height="150">
+                        <img class="me-2" src="<?php echo '/greenstore/upload/img/' . $sanpham[0]['Hinh_sp_nho_1']; ?>" alt="" height="150">
+                        <img src="<?php echo '/greenstore/upload/img/' . $sanpham[0]['Hinh_sp_nho_2']; ?>" alt="" height="150">
+                        <input hidden name="oldImage" type="text" value="<?php echo $sanpham[0]['Hinh_sp']; ?>">
+                        <input hidden name="oldSmallImage1" type="text" value="<?php echo $sanpham[0]['Hinh_sp_nho_1']; ?>">
+                        <input hidden name="oldSmallImage2" type="text" value="<?php echo $sanpham[0]['Hinh_sp_nho_2']; ?>">
+                    </div>
+                    <div>Ảnh mới</div>
+                    <div class="custom-file">
+                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" />
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" name="smallImage1" class="custom-file-input" id="exampleInputFile2" />
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" name="smallImage2" class="custom-file-input" id="exampleInputFile3" />
+                    </div>
+                    <div class="form-group mt-2">
                         <label>Mô tả chi tiết</label>
-                        <textarea class="form-control" name="detail" rows="3" placeholder="Nhập 1 đoạn mô tả ngắn về sản phẩm" style="height: 78px"><?php echo $sanpham[0]['Mo_ta_ct'] ?></textarea>
+                        <textarea class="form-control border border-primary" name="detail" rows="3" placeholder="Nhập 1 đoạn mô tả ngắn về sản phẩm" style="height: 78px"><?php echo $sanpham[0]['Mo_ta_ct'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" name="submit" class="btn btn-primary">

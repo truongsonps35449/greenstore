@@ -73,6 +73,22 @@ $sanpham = getSanPham();
               } else {
                 $trangthai = 'Hết hàng';
               }
+
+              if (isset($s['trang_thai'])) {
+                if ($s['trang_thai'] == 1) {
+                  $mode = 0;
+                } else {
+                  $mode = 1;
+                }
+              }
+
+              if (isset($s['trang_thai'])) {
+                if ($s['trang_thai'] == 1) {
+                  $trangthaihientai = "Ẩn";
+                } else {
+                  $trangthaihientai = "Hiện";
+                }
+              }
               echo '
               <tr>
                 <td>' . $s['Ten_sp'] . '</td>
@@ -81,9 +97,10 @@ $sanpham = getSanPham();
                 <td>' . $s['Luot_xem'] . '</td>
                 <td>' . $trangthai . '</td>
                 <td>
-                  <a href="editProduct.php?ma_sp=' . $s['Ma_sp'] . '" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-                  <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Ẩn</a>
-                  <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hiện</a>
+                  <a href="editProduct.php?ma_sp=' . $s['Ma_sp'] . '" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>'
+                . '
+                  <a href="index.php?pg=setStatus&id=' . $s['Ma_sp'] . '&trang_thai=' . $mode . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i>' . $trangthaihientai . '</a>'
+                . '
                 </td>
               </tr>';
             }

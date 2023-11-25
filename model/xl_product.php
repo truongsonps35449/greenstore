@@ -72,3 +72,18 @@ function getProductById($id)
 
     $conn->close();
 }
+
+function thayDoiTrangThaiSp($id, $trangthai)
+{
+    $query = "UPDATE `san_pham` 
+    SET `trang_thai`= $trangthai
+    WHERE `Ma_sp` = $id";
+    $conn = get_connection();
+    if ($conn) {
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            return 1;
+        }
+        return 0;
+    }
+}
