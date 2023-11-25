@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Đăng Ký</title>
+  <!-- Thêm các liên kết Bootstrap CSS và JS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rYHZD6tS4imz4n9yoQvJkpd2HHP9Fh11lOhBNPU7pVly/Z5GgtzImMjlsMLjC5Fa" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-AKfukSkQ5V6z5gqB7BTFve4snt0OVbGvqV+8h+3KcJuT5FxE9I1GqndX4TKszQoz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container mt-5">
+      <div class="container">
+        <!--FORM ĐĂNG NHẬP-->
+        <h2 class="dk"><center>ĐĂNG KÝ </center></h2>
+        <form id="form1">
+            <p> 
+                <label>Họ và tên</label><br>
+                <input id="hoten" type="text"class="txt">   
+                <span id="loihoten" class="text-danger"></span>
+            </p>
+            <p> 
+              <label for="">Mật khẩu</label><br>
+              <input id="password"type="password" class="txt">
+              <span id="loipassword" class="text-danger"></span>
+             </p> 
+            <p> 
+                <label>Email</label><br> 
+                <input id="email" type="email"  class="txt">
+                <span id="loiemail" class="text-danger"></span>
+            </p> 
+            <p> 
+              <label>Số điện thoại</label><br> 
+              <input id="sdt" type="sdt"  class="txt">
+              <span id="loisdt" class="text-danger"></span>
+          </p> 
+            <div id="baoloi"></div>
+            <button type="button" onclick="return kiemtra();" id="dangki">Đăng kí</button>
+        </form>   
+       </div>
+      </div>
+      <script>
+        $(document).ready(function() {
+          $("#registrationForm").submit(function(event) {
+            // Ngăn chặn việc gửi form mặc định
+            event.preventDefault();
+      
+            // Lấy giá trị từ các trường input
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var confirmPassword = $("#confirmPassword").val();
+      
+            // Kiểm tra điều kiện (ví dụ: mật khẩu phải trùng khớp)
+            if (password !== confirmPassword) {
+              alert("Mật khẩu và xác nhận mật khẩu không khớp!");
+            } else {
+              // Xử lý đăng ký (có thể gửi dữ liệu đăng ký đến máy chủ ở đây)
+              alert("Đăng ký thành công!");
+              // Đặt thêm mã xử lý sau khi đăng ký thành công ở đây
+            }
+          });
+        });
+      </script>
+            
